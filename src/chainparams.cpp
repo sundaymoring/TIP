@@ -15,6 +15,9 @@
 #include <boost/assign/list_of.hpp>
 
 #include "chainparamsseeds.h"
+#include "arith_uint256.h"
+
+#include "versionbits.h"
 
 using namespace std;
 
@@ -79,9 +82,9 @@ public:
         consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
         consensus.posLimitV2 = uint256S("000000000000ffffffffffffffffffffffffffffffffffffffffffffffffffff");
-        consensus.nTargetTimespan = 16 * 60; // 16 mins
+        consensus.nTargetTimespan = 60 * 60; // 16 mins
         consensus.nTargetSpacingV1 = 60;
-        consensus.nTargetSpacing = 64;
+        consensus.nTargetSpacing = 60;
         consensus.BIP34Height = 227931;
         consensus.BIP34Hash = uint256S("0x000000000000024b89b42a942fe0d9fea3bb44ab7bd1b19115dd6a759c0808b8");
         consensus.fPowAllowMinDifficultyBlocks = false;
@@ -108,12 +111,12 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x70;
-        pchMessageStart[1] = 0x35;
-        pchMessageStart[2] = 0x22;
-        pchMessageStart[3] = 0x05;
+        pchMessageStart[0] = 0xB6;
+        pchMessageStart[1] = 0x89;
+        pchMessageStart[2] = 0x54;
+        pchMessageStart[3] = 0xD3;
         vAlertPubKey = ParseHex("0486bce1bac0d543f104cbff2bd23680056a3b9ea05e1137d2ff90eeb5e08472eb500322593a2cb06fbf8297d7beb6cd30cb90f98153b5b7cce1493749e41e0284");
-        nDefaultPort = 15714;
+        nDefaultPort = 8777;
         nMaxTipAge = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
@@ -128,9 +131,9 @@ public:
                  *     CTxOut(empty)
                  *   vMerkleTree: 12630d16a9
                  */
-        const char* pszTimestamp = "20 Feb 2014 Bitcoin ATMs come to USA";
+        const char* pszTimestamp = "It is inevitable that IP service and securitization powered by blockchain will stand in the center stage of the future startups since execution and management could be commoditized";
         CMutableTransaction txNew;
-        txNew.nTime = 1393221600;
+        txNew.nTime = 1512459830;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CScriptNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -138,19 +141,37 @@ public:
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock.SetNull();
         genesis.nVersion = 1;
-        genesis.nTime    = 1393221600;
+        genesis.nTime    = 1512459830;
         genesis.nBits    = 0x1e0fffff;
-        genesis.nNonce = 164482;
+        genesis.nNonce = 1818308;
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000001faef25dec4fbcf906e6242621df2c183bf232f263d0ba5b101911e4563"));
-        assert(genesis.hashMerkleRoot == uint256S("0x12630d16a97f24b287c8c2594dda5fb98c9e6c70fc61d44191931ea2aa08dc90"));
+//        while (true) {
+//            static int i= 0;
+//            genesis.nNonce = ++i;
+//            genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
+//            consensus.hashGenesisBlock = genesis.GetHash();
+//            if(i%10000==0){
+//                printf( "i=%d consensus.hashGenesisBlock=%s\n", i, consensus.hashGenesisBlock.GetHex().c_str() );
+//                printf( "arith_uint256().SetCompact(genesis.nBits)=%s\n", arith_uint256().SetCompact(genesis.nBits).GetHex().c_str());
+//                printf( "aconsensus.powLimit=%s\n\n", consensus.powLimit.GetHex().c_str());
+//            }
+//            if(UintToArith256(consensus.hashGenesisBlock) < UintToArith256(consensus.powLimit) &&
+//                    UintToArith256(consensus.hashGenesisBlock) < arith_uint256().SetCompact(genesis.nBits)){
+//                printf( "i = %d\n", genesis.nNonce);
+//                printf( "consensus.hashGenesisBlock=%s\n", consensus.hashGenesisBlock.GetHex().c_str());
+//                printf( "genesis.hashMerkleRoot=%s\n", genesis.hashMerkleRoot.GetHex().c_str() );
+//                break;
+//            }
+//        }
+        assert(consensus.hashGenesisBlock == uint256S("0x00000ec933acc7b9cfc5eb887dd04bd1172faac6ccecb8aa2401ec87a803f3b2"));
+        assert(genesis.hashMerkleRoot == uint256S("0x202d742207446aef852ddc11d5071b1d45769ceea82af19f9cca449b59706ac0"));
 
-        vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl"));
-        vSeeds.push_back(CDNSSeedData("vps.joshuajbouw.com", "dnsseed.joshuajbouw.com"));
+//        vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl"));
+//        vSeeds.push_back(CDNSSeedData("vps.joshuajbouw.com", "dnsseed.joshuajbouw.com"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,25);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,85);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,23);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1,153);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
@@ -163,7 +184,7 @@ public:
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = false;
 
-        checkpointData = (CCheckpointData) {
+        checkpointData = (CCheckpointData) {/*
                     boost::assign::map_list_of
                     (  5001, uint256S("0x2fac9021be0c311e7b6dc0933a72047c70f817e2eb1e01bede011193ad1b28bc"))  // hardfork
                     ( 10000, uint256S("0x0000000000827e4dc601f7310a91c45af8df0dfc1b6fa1dfa5b896cb00c8767c"))  // last pow block
@@ -175,7 +196,7 @@ public:
                     2774767,    // * total number of transactions between genesis and last checkpoint
                                 //   (the tx=... number in the SetBestChain debug.log lines)
                     3500.0      // * estimated number of transactions per day after checkpoint
-        };
+        */};
     }
 };
 static CMainParams mainParams;
@@ -321,8 +342,8 @@ public:
         genesis.nNonce = 164482;
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x000001faef25dec4fbcf906e6242621df2c183bf232f263d0ba5b101911e4563"));
-        assert(genesis.hashMerkleRoot == uint256S("0x12630d16a97f24b287c8c2594dda5fb98c9e6c70fc61d44191931ea2aa08dc90"));
+//        assert(consensus.hashGenesisBlock == uint256S("0x000001faef25dec4fbcf906e6242621df2c183bf232f263d0ba5b101911e4563"));
+//        assert(genesis.hashMerkleRoot == uint256S("0x12630d16a97f24b287c8c2594dda5fb98c9e6c70fc61d44191931ea2aa08dc90"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();  //! Regtest mode doesn't have any DNS seeds.

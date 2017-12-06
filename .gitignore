@@ -1,5 +1,8 @@
 *.tar.gz
 
+BPCToken.*
+core
+
 *.exe
 src/bitcoin
 src/bitcoind

@@ -226,7 +226,7 @@ public:
 
     uint256 GetBlockHash() const
     {
-        return *phashBlock;
+        return phashBlock==NULL ? uint256() : *phashBlock ;
     }
 
     uint256 GetBlockPoWHash() const

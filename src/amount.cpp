@@ -19,7 +19,7 @@ CFeeRate::CFeeRate(const CAmount& nFeePaid, size_t nSize)
 }
 
 CAmount CFeeRate::GetFee(size_t nSize) const
-{
+{return DEFAULT_TRANSACTION_MINFEE;
     CAmount nFee = nSatoshisPerK * ceil(1 + nSize / 1000);
 
     if (nFee == 0 && nSatoshisPerK > 0)

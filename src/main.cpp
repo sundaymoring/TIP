@@ -979,7 +979,7 @@ bool CheckTransaction(const CTransaction& tx, CValidationState &state)
 
     if (tx.IsCoinBase())
     {
-        if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 100)
+        if (tx.vin[0].scriptSig.size() < 2 || tx.vin[0].scriptSig.size() > 190)
             return state.DoS(100, false, REJECT_INVALID, "bad-cb-length");
     }
     else
@@ -1679,7 +1679,7 @@ bool ReadFromDisk(CTransaction& tx, CDiskTxPos& txindex)
 
 CAmount GetProofOfWorkSubsidy()
 {
-	return 10000 * COIN;
+    return 1000000 * COIN;
 }
 
 CAmount GetProofOfStakeSubsidy()
@@ -2481,7 +2481,7 @@ bool ConnectBlock(const CBlock& block, CValidationState& state, CBlockIndex* pin
                   error("%s: tried to stake at depth %d", __func__, pindex->nHeight - coins->nHeight),
                     REJECT_INVALID, "bad-cs-premature");
 
-         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, coins, prevout, block.vtx[1].nTime))
+         if (!CheckStakeKernelHash(pindex->pprev, block.nBits, *coins, prevout, block.vtx[1].nTime))
               return state.DoS(100, error("%s: proof-of-stake hash doesn't match nBits", __func__),
                                  REJECT_INVALID, "bad-cs-proofhash");
     }
@@ -3682,9 +3682,9 @@ static bool CheckBlockSignature(const CBlock& block, const uint256& hash)
 
 bool CheckBlockHeader(const CBlockHeader& block, CValidationState& state, bool fCheckPOW)
 {
-	if (block.nVersion < 7 && Params().GetConsensus().IsProtocolV2(block.GetBlockTime()))
-	        return state.Invalid(error("%s: rejected nVersion=%d block", __func__, block.nVersion),
-	REJECT_OBSOLETE, "bad-version");
+//	if (block.nVersion < 7 && Params().GetConsensus().IsProtocolV2(block.GetBlockTime()))
+//	        return state.Invalid(error("%s: rejected nVersion=%d block", __func__, block.nVersion),
+//	REJECT_OBSOLETE, "bad-version");
 
     // Check proof of work matches claimed amount
     if (fCheckPOW && !CheckProofOfWork(block.GetPoWHash(), block.nBits, Params().GetConsensus()))
@@ -3708,7 +3708,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, const uint256& has
 
     // Check that the header is valid (particularly PoW).  This is mostly
     // redundant with the call in AcceptBlockHeader.
-    if (!CheckBlockHeader(block, state, block.IsProofOfWork()))
+    if (!CheckBlockHeader(block, state, fCheckPOW ? block.IsProofOfWork() : fCheckPOW))
         return false;
 
     // Check the merkle root.
@@ -3858,7 +3858,7 @@ bool ContextualCheckBlock(const CBlock& block, CValidationState& state, CBlockIn
     	return state.DoS(100, error("%s : reject proof-of-work at height %d", __func__, nHeight), REJECT_INVALID, "bad-pow-height");
 
     // Start enforcing BIP113 (Median Time Past) using versionbits logic.
-    int nLockTimeFlags = 0;
+//    int nLockTimeFlags = 0;
 
     int64_t nLockTimeCutoff = block.GetBlockTime();
 

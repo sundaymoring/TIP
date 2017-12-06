@@ -12,9 +12,11 @@ static const unsigned int MAX_BLOCK_SIZE = 1000000;
 static const unsigned int MAX_BLOCK_SIGOPS = MAX_BLOCK_SIZE/50;
 /** Coinbase transaction outputs can only be spent after this number of new blocks (network rule) */
 static const int COINBASE_MATURITY = 500;
+//static const int COINBASE_MATURITY = 5;
 
 /** Kernel input must have this number of confirmations (network rule) */
 static const int STAKE_MIN_CONFIRMATIONS = 500;
+//static const int STAKE_MIN_CONFIRMATIONS = 5;
 
 /** Flags for nSequence and nLockTime locks */
 enum {

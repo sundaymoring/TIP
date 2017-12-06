@@ -660,7 +660,7 @@ bool CheckKernel(CBlockIndex* pindexPrev, unsigned int nBits, int64_t nTime, con
     if (pBlockTime)
         *pBlockTime = block.GetBlockTime();
 
-    return CheckStakeKernelHash(pindexPrev, nBits, new CCoins(txPrev, pindexPrev->nHeight), prevout, nTime);
+    return CheckStakeKernelHash(pindexPrev, nBits, CCoins(txPrev, pindexPrev->nHeight), prevout, nTime);
 }
 
 // miner's coin stake reward
@@ -2751,6 +2751,7 @@ CAmount CWallet::GetRequiredFee(unsigned int nTxBytes)
 
 CAmount CWallet::GetMinimumFee(unsigned int nTxBytes, unsigned int nConfirmTarget, const CTxMemPool& pool)
 {
+    return DEFAULT_TRANSACTION_MINFEE;
     CAmount nFeeNeeded = GetRequiredFee(nTxBytes);
     // But always obey the maximum
     if (nFeeNeeded > maxTxFee)

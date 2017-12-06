@@ -320,7 +320,7 @@ CBlockTemplate* CreateNewBlock(const CChainParams& chainparams, const CScript& s
         pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
         pblock->nTime          = max(pindexPrev->GetPastTimeLimit()+1, GetMaxTransactionTime(pblock));
         if (!fProofOfStake)
-        	UpdateTime(pblock, Params().GetConsensus(), pindexPrev);
+            UpdateTime(pblock, Params().GetConsensus(), pindexPrev);
         pblock->nBits = GetNextTargetRequired(pindexPrev, pblock, fProofOfStake, Params().GetConsensus());
         pblock->nNonce = 0;
         pblocktemplate->vTxSigOps[0] = GetLegacySigOpCount(pblock->vtx[0]);
@@ -458,10 +458,11 @@ void static BitcoinMiner(const CChainParams& chainparams)
             while (true) {
                 // Check if something found
             	 unsigned int nHashesDone = 0;
-            	 char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
+//            	 char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
             	 while(true)
                  {
-            		scrypt_1024_1_1_256_sp(BEGIN(pblock->nVersion), BEGIN(thash), scratchpad);
+                    thash = pblock->GetHash();
+//            		scrypt_1024_1_1_256_sp(BEGIN(pblock->nVersion), BEGIN(thash), scratchpad);
                     if (UintToArith256(thash) <= hashTarget)
                     {
 
@@ -625,11 +626,13 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
             MilliSleep(1000);
         }
 
-        while (vNodes.empty() || IsInitialBlockDownload())
-        {
-            nLastCoinStakeSearchInterval = 0;
-            fTryToSync = true;
-            MilliSleep(1000);
+        if( chainparams.MiningRequiresPeers()){
+            while (vNodes.empty() || IsInitialBlockDownload())
+            {
+                nLastCoinStakeSearchInterval = 0;
+                fTryToSync = true;
+                MilliSleep(1000);
+            }
         }
 
         if (fTryToSync)
@@ -640,6 +643,11 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
                 MilliSleep(60000);
                 continue;
             }
+        }
+
+        if( chainActive.Tip()->nHeight < chainparams.GetConsensus().nLastPOWBlock ){
+            MilliSleep(60000);
+            continue;
         }
 
         //

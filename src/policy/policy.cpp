@@ -62,7 +62,8 @@ int64_t FutureDrift(int64_t nTime)
 	if (Params().GetConsensus().fPowNoRetargeting && chainActive.Height() <= Params().GetConsensus().nLastPOWBlock) {
 	         return nTime + 24 * 60 * 60;
 	}
-    return Params().GetConsensus().IsProtocolV2(nTime) ? nTime + 15 : nTime + 10 * 60;
+//    return Params().GetConsensus().IsProtocolV2(nTime) ? nTime + 15 : nTime + 10 * 60;
+    return nTime + 10 * 60;
 }
 
 bool IsStandardTx(const CTransaction& tx, std::string& reason)
