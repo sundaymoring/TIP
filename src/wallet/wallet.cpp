@@ -819,11 +819,12 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
     // Calculate coin age reward
         {
-            uint64_t nCoinAge;
-            if (!GetCoinAge(txNew, *pblocktree, pindexPrev, nCoinAge))
-                return error("CreateCoinStake : failed to calculate coin age");
+//            uint64_t nCoinAge;
+//            if (!GetCoinAge(txNew, *pblocktree, pindexPrev, nCoinAge))
+//                return error("CreateCoinStake : failed to calculate coin age");
 
-            int64_t nReward = GetProofOfStakeReward(pindexPrev, nCoinAge, nFees);
+//            int64_t nReward = GetProofOfStakeReward(pindexPrev, nCoinAge, nFees);
+            int64_t nReward = nFees;
             if (nReward <= 0)
                 return false;
 

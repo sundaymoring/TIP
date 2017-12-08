@@ -103,7 +103,7 @@ public:
         consensus.nProtocolV1RetargetingFixedTime = 1395631999;
         consensus.nProtocolV2Time = 1407053625;
         consensus.nProtocolV3Time = 1444028400;
-        consensus.nLastPOWBlock = 10000;
+        consensus.nLastPOWBlock = 1000;
         consensus.nStakeTimestampMask = 0xf;
 
         /**
@@ -133,7 +133,7 @@ public:
                  */
         const char* pszTimestamp = "It is inevitable that IP service and securitization powered by blockchain will stand in the center stage of the future startups since execution and management could be commoditized";
         CMutableTransaction txNew;
-        txNew.nTime = 1512459830;
+        txNew.nTime = 1512714034;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CScriptNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -141,9 +141,9 @@ public:
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock.SetNull();
         genesis.nVersion = 1;
-        genesis.nTime    = 1512459830;
+        genesis.nTime    = 1512714034;
         genesis.nBits    = 0x1e0fffff;
-        genesis.nNonce = 1818308;
+        genesis.nNonce = 437539;
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 //        while (true) {
@@ -164,8 +164,8 @@ public:
 //                break;
 //            }
 //        }
-        assert(consensus.hashGenesisBlock == uint256S("0x00000ec933acc7b9cfc5eb887dd04bd1172faac6ccecb8aa2401ec87a803f3b2"));
-        assert(genesis.hashMerkleRoot == uint256S("0x202d742207446aef852ddc11d5071b1d45769ceea82af19f9cca449b59706ac0"));
+        assert(consensus.hashGenesisBlock == uint256S("0x00000adf8a93dd591de506b7f203d687c6e896b0e0de6c9352b4150016f681e2"));
+        assert(genesis.hashMerkleRoot == uint256S("0x000d38c688a5dac84575a609db0f5ce502e42187e82656e5295f501d775e8852"));
 
 //        vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl"));
 //        vSeeds.push_back(CDNSSeedData("vps.joshuajbouw.com", "dnsseed.joshuajbouw.com"));
