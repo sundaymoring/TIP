@@ -825,7 +825,7 @@ bool CWallet::CreateCoinStake(const CKeyStore& keystore, unsigned int nBits, int
 
 //            int64_t nReward = GetProofOfStakeReward(pindexPrev, nCoinAge, nFees);
             int64_t nReward = nFees;
-            if (nReward <= 0)
+            if (nReward < 0)
                 return false;
 
             nCredit += nReward;

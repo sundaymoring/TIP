@@ -608,7 +608,6 @@ bool SignBlock(CBlock& block, CWallet& wallet, int64_t& nFees)
 
 void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
 {
-
     SetThreadPriority(THREAD_PRIORITY_LOWEST);
 
     // Make this thread recognisable as the mining thread
@@ -638,7 +637,7 @@ void ThreadStakeMiner(CWallet *pwallet, const CChainParams& chainparams)
         if (fTryToSync)
         {
             fTryToSync = false;
-            if (vNodes.size() < 3 || pindexBestHeader->GetBlockTime() < GetTime() - 10 * 60)
+            if (vNodes.size() < 2 || pindexBestHeader->GetBlockTime() < GetTime() - 24 * 6 * 10 * 60 *365)
             {
                 MilliSleep(60000);
                 continue;
