@@ -133,7 +133,7 @@ public:
                  */
         const char* pszTimestamp = "It is inevitable that IP service and securitization powered by blockchain will stand in the center stage of the future startups since execution and management could be commoditized";
         CMutableTransaction txNew;
-        txNew.nTime = 1512714034;
+        txNew.nTime = 1512973644;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CScriptNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -141,9 +141,9 @@ public:
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock.SetNull();
         genesis.nVersion = 1;
-        genesis.nTime    = 1512714034;
+        genesis.nTime    = 1512973644;
         genesis.nBits    = 0x1e0fffff;
-        genesis.nNonce = 437539;
+        genesis.nNonce = 1506505;
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 //        while (true) {
@@ -164,14 +164,14 @@ public:
 //                break;
 //            }
 //        }
-        assert(consensus.hashGenesisBlock == uint256S("0x00000adf8a93dd591de506b7f203d687c6e896b0e0de6c9352b4150016f681e2"));
-        assert(genesis.hashMerkleRoot == uint256S("0x000d38c688a5dac84575a609db0f5ce502e42187e82656e5295f501d775e8852"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000006bf870fd4c98c2e4b2b939c6ce9730219df265587c480b5f44aad8cf579"));
+        assert(genesis.hashMerkleRoot == uint256S("0x6bdce882c82be132b20601195d79c93153702f6ed097e267aab68a60f40876eb"));
 
 //        vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl"));
 //        vSeeds.push_back(CDNSSeedData("vps.joshuajbouw.com", "dnsseed.joshuajbouw.com"));
 
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,48);
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,23);
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,117);
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1,153);
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();

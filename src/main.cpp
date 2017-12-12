@@ -2108,6 +2108,7 @@ static bool ApplyTxInUndo(const CTxInUndo& undo, CCoinsViewCache& view, const CO
         coins->fCoinBase = undo.fCoinBase;
         coins->nHeight = undo.nHeight;
         coins->nVersion = undo.nVersion;
+        coins->fCoinStake = undo.fCoinStake;
         coins->nTime = undo.nTime;
     } else {
         if (coins->IsPruned())
