@@ -167,8 +167,16 @@ public:
         assert(consensus.hashGenesisBlock == uint256S("0x0000039807405d48f614612e5767895d356335080208edbef9e71298fe053e2f"));
         assert(genesis.hashMerkleRoot == uint256S("0xfc1e2a8ca623ca7e4d7aaa81996c50227a87b14d059447e90d07004b2de3c022"));
 
-//        vSeeds.push_back(CDNSSeedData("vasin.nl", "dnsseed.vasin.nl"));
-//        vSeeds.push_back(CDNSSeedData("vps.joshuajbouw.com", "dnsseed.joshuajbouw.com"));
+        vSeeds.push_back(CDNSSeedData("seed1.bpchain.io", "seed1.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed2.bpchain.io", "seed2.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed3.bpchain.io", "seed3.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed4.bpchain.io", "seed4.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed5.bpchain.io", "seed5.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed6.bpchain.io", "seed6.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed7.bpchain.io", "seed7.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed8.bpchain.io", "seed8.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed9.bpchain.io", "seed9.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed10.bpchain.io", "seed10.bpchain.io"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,117);

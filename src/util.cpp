@@ -99,8 +99,8 @@ namespace boost {
 
 using namespace std;
 
-const char * const BITCOIN_CONF_FILENAME = "lore.conf";
-const char * const BITCOIN_PID_FILENAME = "lored.pid";
+const char * const BITCOIN_CONF_FILENAME = "bpchain.conf";
+const char * const BITCOIN_PID_FILENAME = "bpchain.pid";
 
 map<string, string> mapArgs;
 map<string, vector<string> > mapMultiArgs;
@@ -461,7 +461,7 @@ boost::filesystem::path GetDefaultDataDir()
     // Unix: ~/.bitcoin
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "Lore";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "bpchain";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -476,7 +476,7 @@ boost::filesystem::path GetDefaultDataDir()
     return pathRet / "Lore";
 #else
     // Unix
-    return pathRet / ".lore";
+    return pathRet / ".bpchain";
 #endif
 #endif
 }
