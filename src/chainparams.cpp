@@ -111,12 +111,12 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xB6;
-        pchMessageStart[1] = 0x89;
+        pchMessageStart[0] = 0x3E;
+        pchMessageStart[1] = 0xD6;
         pchMessageStart[2] = 0x54;
         pchMessageStart[3] = 0xD3;
         vAlertPubKey = ParseHex("0486bce1bac0d543f104cbff2bd23680056a3b9ea05e1137d2ff90eeb5e08472eb500322593a2cb06fbf8297d7beb6cd30cb90f98153b5b7cce1493749e41e0284");
-        nDefaultPort = 8777;
+        nDefaultPort = 8111;
         nMaxTipAge = 24 * 60 * 60;
         nPruneAfterHeight = 100000;
 
@@ -133,7 +133,7 @@ public:
                  */
         const char* pszTimestamp = "It is inevitable that IP service and securitization powered by blockchain will stand in the center stage of the future startups since execution and management could be commoditized";
         CMutableTransaction txNew;
-        txNew.nTime = 1513134053;
+        txNew.nTime = 1520475754;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CScriptNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -141,9 +141,9 @@ public:
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock.SetNull();
         genesis.nVersion = 1;
-        genesis.nTime    = 1513134053;
+        genesis.nTime    = 1520475754;
         genesis.nBits    = 0x1e0fffff;
-        genesis.nNonce = 6440;
+        genesis.nNonce = 1829468;
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 //        while (true) {
@@ -159,24 +159,24 @@ public:
 //            if(UintToArith256(consensus.hashGenesisBlock) < UintToArith256(consensus.powLimit) &&
 //                    UintToArith256(consensus.hashGenesisBlock) < arith_uint256().SetCompact(genesis.nBits)){
 //                printf( "i = %d\n", genesis.nNonce);
-//                printf( "consensus.hashGenesisBlock=%s\n", consensus.hashGenesisBlock.GetHex().c_str());
-//                printf( "genesis.hashMerkleRoot=%s\n", genesis.hashMerkleRoot.GetHex().c_str() );
+//                printf( "consensus.hashGenesisBlock=0x%s\n", consensus.hashGenesisBlock.GetHex().c_str());
+//                printf( "genesis.hashMerkleRoot=0x%s\n", genesis.hashMerkleRoot.GetHex().c_str() );
 //                break;
 //            }
 //        }
-        assert(consensus.hashGenesisBlock == uint256S("0x0000039807405d48f614612e5767895d356335080208edbef9e71298fe053e2f"));
-        assert(genesis.hashMerkleRoot == uint256S("0xfc1e2a8ca623ca7e4d7aaa81996c50227a87b14d059447e90d07004b2de3c022"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0000067900087b04a9902790dbb9d5a0c3a319ec44dee98ffdfd49570d2b5c4f"));
+        assert(genesis.hashMerkleRoot == uint256S("0xcc68e5f89d7b78d4d8bd17b45b84d722db16d29a3f78e9735ae4373559f109bc"));
 
-        vSeeds.push_back(CDNSSeedData("seed1.bpchain.io", "seed1.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed2.bpchain.io", "seed2.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed3.bpchain.io", "seed3.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed4.bpchain.io", "seed4.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed5.bpchain.io", "seed5.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed6.bpchain.io", "seed6.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed7.bpchain.io", "seed7.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed8.bpchain.io", "seed8.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed9.bpchain.io", "seed9.bpchain.io"));
-        vSeeds.push_back(CDNSSeedData("seed10.bpchain.io", "seed10.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed1.topipchain.bpchain.io", "seed1.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed2.topipchain.bpchain.io", "seed2.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed3.topipchain.bpchain.io", "seed3.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed4.topipchain.bpchain.io", "seed4.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed5.topipchain.bpchain.io", "seed5.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed6.topipchain.bpchain.io", "seed6.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed7.topipchain.bpchain.io", "seed7.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed8.topipchain.bpchain.io", "seed8.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed9.topipchain.bpchain.io", "seed9.topipchain.bpchain.io"));
+        vSeeds.push_back(CDNSSeedData("seed10.topipchain.bpchain.io", "seed10.topipchain.bpchain.io"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,55);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,117);
