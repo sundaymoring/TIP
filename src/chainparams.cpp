@@ -133,7 +133,7 @@ public:
                  */
         const char* pszTimestamp = "It is inevitable that IP service and securitization powered by blockchain will stand in the center stage of the future startups since execution and management could be commoditized";
         CMutableTransaction txNew;
-        txNew.nTime = 1520475754;
+        txNew.nTime = 1520840985;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 0 << CScriptNum(42) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
@@ -141,9 +141,9 @@ public:
         genesis.vtx.push_back(txNew);
         genesis.hashPrevBlock.SetNull();
         genesis.nVersion = 1;
-        genesis.nTime    = 1520475754;
+        genesis.nTime    = 1520840985;
         genesis.nBits    = 0x1e0fffff;
-        genesis.nNonce = 1829468;
+        genesis.nNonce = 454493;
         genesis.hashMerkleRoot = BlockMerkleRoot(genesis);
         consensus.hashGenesisBlock = genesis.GetHash();
 //        while (true) {
@@ -164,8 +164,8 @@ public:
 //                break;
 //            }
 //        }
-        assert(consensus.hashGenesisBlock == uint256S("0x0000067900087b04a9902790dbb9d5a0c3a319ec44dee98ffdfd49570d2b5c4f"));
-        assert(genesis.hashMerkleRoot == uint256S("0xcc68e5f89d7b78d4d8bd17b45b84d722db16d29a3f78e9735ae4373559f109bc"));
+        assert(consensus.hashGenesisBlock == uint256S("0x000008e6a0786d4af0dd575edec94425f307a7d713bfc665f874e65e2eadfc1c"));
+        assert(genesis.hashMerkleRoot == uint256S("0xb899ee5419372e0b91904866e63a3b16f3dac88557403701305ba26bdadf8e38"));
 
         vSeeds.push_back(CDNSSeedData("seed1.topipchain.bpchain.io", "seed1.topipchain.bpchain.io"));
         vSeeds.push_back(CDNSSeedData("seed2.topipchain.bpchain.io", "seed2.topipchain.bpchain.io"));
