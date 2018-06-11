@@ -105,19 +105,27 @@ public:
         consensus.nProtocolV3Time = 1444028400;
         consensus.nLastPOWBlock = 1000;
         consensus.nStakeTimestampMask = 0xf;
+        consensus.nForkBlockHeight = 87290;
 
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0x3E;
+//        pchMessageStart[0] = 0x3E;
+//        pchMessageStart[1] = 0xD6;
+//        pchMessageStart[2] = 0x54;
+//        pchMessageStart[3] = 0xD3;
+
+        pchMessageStart[0] = 0x45;
         pchMessageStart[1] = 0xD6;
         pchMessageStart[2] = 0x54;
         pchMessageStart[3] = 0xD3;
+
         vAlertPubKey = ParseHex("0486bce1bac0d543f104cbff2bd23680056a3b9ea05e1137d2ff90eeb5e08472eb500322593a2cb06fbf8297d7beb6cd30cb90f98153b5b7cce1493749e41e0284");
         nDefaultPort = 8111;
         nMaxTipAge = 24 * 60 * 60;
+//        nMaxTipAge = 24 * 60 * 60 * 30;
         nPruneAfterHeight = 100000;
 
         /**
