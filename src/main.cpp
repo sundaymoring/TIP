@@ -3920,10 +3920,6 @@ static bool AcceptBlockHeader(const CBlockHeader& block, CValidationState& state
         if (!ContextualCheckBlockHeader(block, state, pindexPrev, hash))
             return false;
 
-//        if (pindexPrev->nHeight == chainparams.GetConsensus().nForkBlockHeight ){
-//            *ppindex = pindexPrev;
-//            return false;
-//        }
     }
     if (pindex == NULL)
         pindex = AddToBlockIndex(block, hash);
@@ -5714,11 +5710,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             uint256 hash = header.GetHash();
             if (!AcceptBlockHeader(header, state, hash, chainparams, &pindexLast)) {
 
-//                if (pindexLast->nHeight == chainparams.GetConsensus().nForkBlockHeight ){
-//                    UpdateBlockAvailability(pfrom->GetId(), pindexLast->GetBlockHash());
-//                    return error("blockchain fork");
-//                }
-
                 int nDoS;
                 if (state.IsInvalid(nDoS)) {
                     if (nDoS > 0)
@@ -5726,10 +5717,6 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
                     return error("invalid header received");
                 }
             }
-//            if (pindexLast->nHeight >= chainparams.GetConsensus().nForkBlockHeight ){
-//                UpdateBlockAvailability(pfrom->GetId(), pindexLast->GetBlockHash());
-//                return error("blockchain fork");
-//            }
         }
 
         if (pindexLast)
